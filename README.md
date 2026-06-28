@@ -2,7 +2,6 @@
 
 This is the official implementation of the paper **"MORSE-Net: A Structured Multi-Representation Co-Reasoning Network for Multi-Label 12-Lead ECG Diagnosis"**.
 
-MORSE-Net is a structured multi-representation co-reasoning framework for multi-label 12-lead ECG diagnosis. It decomposes ECG signals into lead-region temporal, spectral rhythm, and morphology-gradient representations, performs cross-representation interaction before classification, and incorporates diagnostic label dependencies through dual-stage label graph reasoning.
 
 ## Dependency
 
