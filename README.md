@@ -80,7 +80,7 @@ MORSE-Net was evaluated on the following public ECG datasets.
 | PTB-XL           | A large public 12-lead ECG dataset                                | https://physionet.org/content/ptb-xl/                              |
 | CPSC 2018        | 12-lead ECG dataset from the China Physiological Signal Challenge | http://2018.icbeb.org/Challenge.html                               |
 | HFHC             | Multi-label ECG dataset from the Tianchi ECG competition          | https://tianchi.aliyun.com/competition/entrance/231754/information |
-| Chapman-Shaoxing | 12-lead ECG dataset with a large diagnostic label space           | https://figshare.com/collections/ChapmanECG/4560497                |
+| Chapman-Shaoxing | 12-lead ECG dataset with a large diagnostic label space           | [https://figshare.com/collections/ChapmanECG/4560497](https://physionet.org/content/ecg-arrhythmia/1.0.0/)                |
 
 ---
 
