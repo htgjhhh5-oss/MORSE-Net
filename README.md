@@ -57,15 +57,7 @@ If the MiniRocket-based training strategy is used, run:
 python minirocket_train.py
 ```
 
-### Knowledge Distillation
 
-After obtaining the trained multi-view model, run:
-
-```bash
-python main_distillation.py
-```
-
----
 
 ## Data Preparation
 
