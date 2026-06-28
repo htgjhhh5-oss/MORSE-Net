@@ -1,57 +1,98 @@
 # MORSE-Net
 
-Official PyTorch implementation of **MORSE-Net: A Structured Multi-Representation Co-Reasoning Network for Multi-Label 12-Lead ECG Diagnosis**.
+Official implementation of **MORSE-Net: A Structured Multi-Representation Co-Reasoning Network for Multi-Label 12-Lead ECG Diagnosis**.
 
-
+MORSE-Net is designed for multi-label 12-lead ECG classification by jointly modeling morphology, rhythm-frequency, spatial lead-region information, and diagnostic label dependencies.
 
 ---
 
 ## Requirements
 
-The code is implemented in Python and PyTorch.
+The code is implemented in Python and PyTorch. The main dependencies are:
 
 ```text
 Python >= 3.8
 PyTorch >= 1.10.0
 NumPy >= 1.21.0
+SciPy
+Pandas
+Scikit-learn
+WFDB
+TQDM
+Matplotlib
+PyYAML
 ```
 
-For model-only usage, install:
+Install the required packages with:
 
 ```bash
-pip install torch numpy
-```
-
-For integration with a complete ECG training pipeline, the following packages are recommended:
-
-```bash
-pip install scipy pandas scikit-learn wfdb tqdm matplotlib pyyaml
+pip install -r requirements.txt
 ```
 
 ---
 
-## Repository Structure
+## Usage
+
+### Configuration
+
+Training and evaluation settings are defined in:
 
 ```text
-models/
-├── __init__.py
-├── morse_net.py
-├── temporal_backbone.py
-├── rhythm_frequency_branch.py
-├── diagnostic_label_graph.py
-└── attention_layers.py
+config.py
 ```
 
-This repository provides the MORSE-Net model implementation.
+Please modify the dataset path, number of classes, training parameters, and output directory according to your own environment.
+
+### Training
+
+After preparing the dataset and setting the configuration file, run:
+
+```bash
+python main_train.py
+```
+
+If the MiniRocket-based training strategy is used, run:
+
+```bash
+python minirocket_train.py
+```
+
+### Knowledge Distillation
+
+After obtaining the trained multi-view model, run:
+
+```bash
+python main_distillation.py
+```
 
 ---
 
+## Data Preparation
 
-In our experiments, ECG recordings are resampled to 100 Hz and adjusted to 1000 samples per lead.
+In our experiments, ECG recordings are resampled to 100 Hz and adjusted to 1000 samples per lead. The input tensor has the shape:
+
+```text
+12 × 1000
+```
+
+For recordings longer than 10 seconds, the first 1000 samples are used. For shorter recordings, zero-padding is applied.
 
 ---
 
-## Model Components
+## Datasets
+
+MORSE-Net was evaluated on the following public ECG datasets.
+
+| Dataset          | Description                                                       | Link                                                               |
+| ---------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------ |
+| PTB-XL           | A large public 12-lead ECG dataset                                | https://physionet.org/content/ptb-xl/                              |
+| CPSC 2018        | 12-lead ECG dataset from the China Physiological Signal Challenge | http://2018.icbeb.org/Challenge.html                               |
+| HFHC             | Multi-label ECG dataset from the Tianchi ECG competition          | https://tianchi.aliyun.com/competition/entrance/231754/information |
+| Chapman-Shaoxing | 12-lead ECG dataset with a large diagnostic label space           | https://figshare.com/collections/ChapmanECG/4560497                |
+
+---
+
+## Model
 
 MORSE-Net consists of three main components:
 
@@ -62,19 +103,19 @@ MORSE-Net consists of three main components:
    Models interactions among different ECG representations and adaptively aggregates multi-view features.
 
 3. **Dual-Stage Diagnostic Label Graph Reasoning**
-   Models diagnostic label dependencies at both feature and logit levels for multi-label prediction.
+   Models diagnostic label dependencies for multi-label ECG prediction.
 
 ---
 
-## Datasets
+## Citation
 
-MORSE-Net was evaluated on four public ECG datasets:
+If you find this repository useful, please cite our paper:
 
-| Dataset          | Task                      |
-| ---------------- | ------------------------- |
-| PTB-XL           | all / form / rhythm       |
-| CPSC 2018        | multi-label ECG diagnosis |
-| HFHC             | multi-label ECG diagnosis |
-| Chapman-Shaoxing | multi-label ECG diagnosis |
-
-
+```bibtex
+@article{morsenet2026,
+  title={MORSE-Net: A Structured Multi-Representation Co-Reasoning Network for Multi-Label 12-Lead ECG Diagnosis},
+  author={Wang, Cheng and Jiang, Xiaogao and Chen, Zhencong and Liu, Xu and Wang, Ran and Rui, Xue and Li, Wanggen and Lin, Zongwu},
+  journal={Biomedical Signal Processing and Control},
+  year={2026}
+}
+```
