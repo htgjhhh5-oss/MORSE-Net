@@ -1,7 +1,9 @@
 # MORSE-Net
 
 Official implementation of **MORSE-Net: A Structured Multi-Representation Co-Reasoning Network for Multi-Label 12-Lead ECG Diagnosis**.
+## Figure 1
 
+[View Figure 1](./img/Figure_1.pdf)
 MORSE-Net is designed for multi-label 12-lead ECG classification by jointly modeling morphology, rhythm-frequency, spatial lead-region information, and diagnostic label dependencies.
 
 ---
