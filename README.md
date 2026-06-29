@@ -99,15 +99,3 @@ MORSE-Net consists of three main components:
 
 ---
 
-## Citation
-
-If you find this repository useful, please cite our paper:
-
-```bibtex
-@article{morsenet2026,
-  title={MORSE-Net: A Structured Multi-Representation Co-Reasoning Network for Multi-Label 12-Lead ECG Diagnosis},
-  author={Wang, Cheng and Jiang, Xiaogao and Chen, Zhencong and Liu, Xu and Wang, Ran and Rui, Xue and Li, Wanggen and Lin, Zongwu},
-  journal={Biomedical Signal Processing and Control},
-  year={2026}
-}
-```
