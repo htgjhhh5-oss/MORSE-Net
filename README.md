@@ -141,19 +141,6 @@ MORSE-Net/
 
 ---
 
-## Citation
-
-```bibtex
-@article{morsenet,
-  title={MORSE-Net: A Structured Multi-Representation Co-Reasoning Network for Multi-Label 12-Lead ECG Diagnosis},
-  author={},
-  journal={},
-  year={}
-}
-```
-
----
-
 ## License
 
 This project is released for academic research purposes.
