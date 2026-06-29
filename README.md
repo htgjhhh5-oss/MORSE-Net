@@ -2,7 +2,7 @@
 
 Official implementation of **MORSE-Net: A Structured Multi-Representation Co-Reasoning Network for Multi-Label 12-Lead ECG Diagnosis**.
 
-MORSE-Net is designed for multi-label 12-lead ECG diagnosis. It jointly models morphology, rhythm-frequency patterns, spatial lead-region information, and diagnostic label dependencies for robust ECG classification.
+MORSE-Net is a structured multi-representation co-reasoning framework for multi-label 12-lead ECG diagnosis. The model jointly exploits morphology-aware temporal patterns, rhythm-frequency representations, spatial lead-region information, and diagnostic label dependencies to improve ECG classification performance.
 
 ---
 
@@ -20,7 +20,7 @@ MORSE-Net is designed for multi-label 12-lead ECG diagnosis. It jointly models m
 
 ## Requirements
 
-The code is implemented in Python with PyTorch. The main dependencies are:
+The implementation is based on Python and PyTorch. The main dependencies are listed below:
 
 ```text
 Python >= 3.8
@@ -53,11 +53,11 @@ Training and evaluation settings are defined in:
 config.py
 ```
 
-Please modify the dataset path, number of classes, training parameters, and output directory according to your local environment.
+The configuration file includes dataset paths, number of diagnostic classes, training hyperparameters, and output directories.
 
 ### Training
 
-After preparing the dataset and updating the configuration file, run:
+After preparing the dataset and setting the configuration file, run:
 
 ```bash
 python main_train.py
@@ -73,13 +73,25 @@ python minirocket_train.py
 
 ## Data Preparation
 
-In our experiments, ECG recordings are resampled to **100 Hz** and adjusted to **1000 samples per lead**. Each ECG sample is represented as a tensor with the following shape:
+In the experiments, ECG recordings are resampled to **100 Hz** and standardized to **1000 samples per lead**. Each ECG sample is represented as:
 
 ```text
 12 × 1000
 ```
 
 For recordings longer than 10 seconds, the first 1000 samples are used. For recordings shorter than 10 seconds, zero-padding is applied.
+
+---
+
+## Input Format
+
+The expected input tensor format is:
+
+```text
+batch_size × 12 × 1000
+```
+
+where `12` denotes the number of ECG leads and `1000` denotes the number of time samples after preprocessing.
 
 ---
 
@@ -90,49 +102,31 @@ MORSE-Net was evaluated on the following public 12-lead ECG datasets.
 | Dataset | Description | Link |
 | --- | --- | --- |
 | PTB-XL | A large-scale public 12-lead ECG dataset | https://physionet.org/content/ptb-xl/ |
-| CPSC 2018 | 12-lead ECG dataset from the China Physiological Signal Challenge | http://2018.icbeb.org/Challenge.html |
-| HFHC | Multi-label ECG dataset from the Tianchi ECG competition | https://tianchi.aliyun.com/competition/entrance/231754/information |
-| Chapman-Shaoxing | 12-lead ECG dataset with a large diagnostic label space | https://physionet.org/content/ecg-arrhythmia/1.0.0/ |
+| CPSC 2018 | A 12-lead ECG dataset from the China Physiological Signal Challenge | http://2018.icbeb.org/Challenge.html |
+| HFHC | A multi-label ECG dataset from the Tianchi ECG competition | https://tianchi.aliyun.com/competition/entrance/231754/information |
+| Chapman-Shaoxing | A 12-lead ECG dataset with a large diagnostic label space | https://physionet.org/content/ecg-arrhythmia/1.0.0/ |
 
 ---
 
 ## Model Architecture
 
-MORSE-Net consists of three main components.
+MORSE-Net consists of three major components.
 
-### 1. Morphology--Rhythm--Spatial Representation Decomposition
+### Morphology--Rhythm--Spatial Representation Decomposition
 
-This module extracts complementary ECG representations from 12-lead ECG signals, including temporal morphology, rhythm-frequency patterns, and morphology-gradient information.
+This component extracts complementary ECG representations from 12-lead ECG signals, including temporal morphology features, rhythm-frequency features, and morphology-gradient features.
 
-### 2. Cross-Representation Interaction and Residual Aggregation
+### Cross-Representation Interaction and Residual Aggregation
 
-This module models interactions among different ECG representations and adaptively aggregates multi-view ECG features for more discriminative representation learning.
+This component models interactions among different ECG representations and performs adaptive multi-view feature aggregation through residual learning.
 
-### 3. Dual-Stage Diagnostic Label Graph Reasoning
+### Dual-Stage Diagnostic Label Graph Reasoning
 
-This module captures diagnostic label dependencies and improves multi-label ECG prediction through structured label-level reasoning.
-
----
-
-## Input Format
-
-The expected input format is:
-
-```text
-batch_size × 12 × 1000
-```
-
-where:
-
-- `12` denotes the number of ECG leads.
-- `1000` denotes the number of time samples after preprocessing.
-- `batch_size` denotes the number of ECG recordings in a mini-batch.
+This component captures diagnostic label dependencies and enhances multi-label prediction through structured label-level reasoning.
 
 ---
 
 ## Project Structure
-
-A typical project structure is shown below:
 
 ```text
 MORSE-Net/
@@ -147,23 +141,7 @@ MORSE-Net/
 
 ---
 
-## Notes
-
-Please make sure that the dataset paths, label files, and training settings are correctly specified in `config.py` before running the training scripts.
-
-The figure shown in the overview section should be placed at:
-
-```text
-./img/Figure_1.jpg
-```
-
-If the file name or extension is different, please update the image path in `README.md`.
-
----
-
 ## Citation
-
-If you find this repository useful, please consider citing our work.
 
 ```bibtex
 @article{morsenet,
