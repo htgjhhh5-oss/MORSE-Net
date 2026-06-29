@@ -2,6 +2,8 @@
 
 Official implementation of **MORSE-Net: A Structured Multi-Representation Co-Reasoning Network for Multi-Label 12-Lead ECG Diagnosis**.
 
+The complete implementation code will be organized and made publicly available in this repository.
+
 MORSE-Net is a structured multi-representation co-reasoning framework for multi-label 12-lead ECG diagnosis. The model jointly exploits morphology-aware temporal patterns, rhythm-frequency representations, spatial lead-region information, and diagnostic label dependencies to improve ECG classification performance.
 
 ---
@@ -99,12 +101,12 @@ where `12` denotes the number of ECG leads and `1000` denotes the number of time
 
 MORSE-Net was evaluated on the following public 12-lead ECG datasets.
 
-| Dataset | Description | Link |
-| --- | --- | --- |
-| PTB-XL | A large-scale public 12-lead ECG dataset | https://physionet.org/content/ptb-xl/ |
-| CPSC 2018 | A 12-lead ECG dataset from the China Physiological Signal Challenge | http://2018.icbeb.org/Challenge.html |
-| HFHC | A multi-label ECG dataset from the Tianchi ECG competition | https://tianchi.aliyun.com/competition/entrance/231754/information |
-| Chapman-Shaoxing | A 12-lead ECG dataset with a large diagnostic label space | https://physionet.org/content/ecg-arrhythmia/1.0.0/ |
+| Dataset          | Description                                                         | Link                                                               |
+| ---------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| PTB-XL           | A large-scale public 12-lead ECG dataset                            | https://physionet.org/content/ptb-xl/                              |
+| CPSC 2018        | A 12-lead ECG dataset from the China Physiological Signal Challenge | http://2018.icbeb.org/Challenge.html                               |
+| HFHC             | A multi-label ECG dataset from the Tianchi ECG competition          | https://tianchi.aliyun.com/competition/entrance/231754/information |
+| Chapman-Shaoxing | A 12-lead ECG dataset with a large diagnostic label space           | https://physionet.org/content/ecg-arrhythmia/1.0.0/                |
 
 ---
 
@@ -139,8 +141,3 @@ MORSE-Net/
 └── README.md
 ```
 
----
-
-## License
-
-This project is released for academic research purposes.
